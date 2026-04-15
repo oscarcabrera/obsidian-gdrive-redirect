@@ -48,9 +48,8 @@ export class SyncEngine {
 
 	async loadState(): Promise<void> {
 		try {
-			const file = this.app.vault.getAbstractFileByPath(SYNC_STATE_FILE);
-			if (file instanceof TFile) {
-				const raw = await this.app.vault.read(file);
+			if (await this.app.vault.adapter.exists(SYNC_STATE_FILE)) {
+				const raw = await this.app.vault.adapter.read(SYNC_STATE_FILE);
 				this.state = JSON.parse(raw);
 			}
 		} catch {
@@ -60,12 +59,7 @@ export class SyncEngine {
 
 	async saveState(): Promise<void> {
 		const data = JSON.stringify(this.state, null, "\t");
-		const file = this.app.vault.getAbstractFileByPath(SYNC_STATE_FILE);
-		if (file instanceof TFile) {
-			await this.app.vault.modify(file, data);
-		} else {
-			await this.app.vault.create(SYNC_STATE_FILE, data);
-		}
+		await this.app.vault.adapter.write(SYNC_STATE_FILE, data);
 	}
 
 	getRecord(localPath: string): SyncRecord | undefined {
