@@ -175,12 +175,9 @@ export class SyncEngine {
 				// Was synced before, now gone from remote → remote was deleted
 				actions.push({ type: "delete-local", localPath: path });
 			} else if (remote && !record) {
-				// Exists in both but never tracked — compare content
-				const localHash = await this.hashFile(file);
-				if (remote.md5Checksum && localHash !== "conflict") {
-					// New to sync state, upload local version and start tracking
-					actions.push({ type: "upload", localPath: path });
-				}
+				// Exists in both but no sync record — update existing remote file
+				// instead of creating a duplicate
+				actions.push({ type: "update-remote", localPath: path, driveFileId: remote.id });
 			} else if (remote && record) {
 				// Both exist and we have a sync record — check for changes
 				const localHash = await this.hashFile(file);
