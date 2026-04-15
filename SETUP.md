@@ -169,18 +169,22 @@ ni envia datos a ningun servidor — corre completamente en tu navegador.
 
 1. Crea un repositorio nuevo en GitHub (puede ser publico o privado)
    - Nombre: `obsidian-gdrive-redirect` (o lo que quieras)
-2. Sube el archivo `redirect-page/index.html` de este plugin al repositorio
-   (puede estar en la raiz del repo)
+2. Copia el archivo `redirect-page/index.html` de este plugin y subelo
+   **a la raiz** del repositorio (que quede como `index.html` en el root,
+   no dentro de una subcarpeta)
 3. Ve a **Settings** → **Pages** del repositorio
-4. Source: **Deploy from a branch** → Branch: `main` → Folder: `/ (root)`
-5. Click **Save**
-6. Espera 1-2 minutos. Tu URL sera:
+4. En **Source**, selecciona **Deploy from a branch**
+5. En **Branch**, selecciona `main` y en **Folder** selecciona `/ (root)`
+   - GitHub Pages solo permite `/ (root)` o `/docs` como carpeta —
+     por eso el `index.html` debe estar en la raiz del repo
+6. Click **Save**
+7. Espera 1-2 minutos. Tu URL sera:
    ```
    https://tuusuario.github.io/obsidian-gdrive-redirect/
    ```
-7. Verifica que la pagina cargue visitandola en tu navegador
+8. Verifica que la pagina cargue visitandola en tu navegador
    (deberia mostrar "Missing authorization code" — eso es normal)
-8. Usa esta URL en dos lugares:
+9. Usa esta URL en dos lugares:
    - **Authorized redirect URI** en Google Cloud (Paso 4, credencial Web)
    - **Redirect page URL** en los settings del plugin en iOS (Paso 7)
 
