@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Obsidian GDrive Sync — Auth Redirect</title>
+    <style>
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", system-ui, sans-serif;
+            text-align: center;
+            padding: 60px 20px;
+            background: #1e1e2e;
+            color: #cdd6f4;
+        }
+        h1 { color: #a6e3a1; margin-bottom: 8px; }
+        p { color: #bac2de; line-height: 1.6; }
+        .status { font-size: 1.2em; margin: 24px 0; }
+        .error { color: #f38ba8; }
+        a { color: #89b4fa; }
+        code {
+            background: #313244;
+            padding: 2px 6px;
+            border-radius: 4px;
+            font-size: 0.95em;
+        }
+    </style>
+</head>
+<body>
+    <h1>Obsidian GDrive Sync</h1>
+    <div id="status" class="status">Processing authentication...</div>
+    <p id="message"></p>
+
+    <script>
+        // This page receives the OAuth2 authorization code from Google
+        // and redirects it to the Obsidian app via the obsidian:// protocol.
+        //
+        // SECURITY:
+        // - This page runs entirely in the browser (client-side only)
+        // - No data is sent to any server
+        // - The authorization code alone is useless without the PKCE code_verifier
+        //   which only exists in the Obsidian plugin's memory
+        //
+        // HOW TO HOST:
+        // 1. Fork or copy this file to a GitHub repository
+        // 2. Enable GitHub Pages (Settings → Pages → Deploy from main branch)
+        // 3. Your redirect URL will be: https://yourusername.github.io/repo-name/
+
+        (function() {
+            var params = new URLSearchParams(window.location.search);
+            var code = params.get("code");
+            var error = params.get("error");
+            var statusEl = document.getElementById("status");
+            var messageEl = document.getElementById("message");
+
+            if (error) {
+                statusEl.textContent = "Authentication failed";
+                statusEl.className = "status error";
+                messageEl.textContent = "Error: " + error + ". Close this tab and try again in Obsidian.";
+                return;
+            }
+
+            if (!code) {
+                statusEl.textContent = "Missing authorization code";
+                statusEl.className = "status error";
+                messageEl.textContent = "No code was received from Google. Close this tab and try again.";
+                return;
+            }
+
+            // Build the obsidian:// URL and redirect
+            var obsidianUrl = "obsidian://gdrive-sync-auth?code=" + encodeURIComponent(code);
+
+            statusEl.textContent = "Redirecting to Obsidian...";
+            messageEl.innerHTML = 'If Obsidian does not open automatically, <a href="' + obsidianUrl + '">tap here</a>.';
+
+            // Redirect after a brief moment so the user sees the status
+            setTimeout(function() {
+                window.location.href = obsidianUrl;
+            }, 500);
+        })();
+    </script>
+</body>
+</html>

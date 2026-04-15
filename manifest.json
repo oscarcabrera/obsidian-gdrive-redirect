@@ -1,0 +1,9 @@
+{
+	"id": "obsidian-gdrive-sync-redstr",
+	"name": "Google Drive Sync (Secure)",
+	"version": "1.0.0",
+	"minAppVersion": "1.0.0",
+	"description": "Secure vault sync to Google Drive — direct OAuth, no third-party servers",
+	"author": "redstr",
+	"isDesktopOnly": false
+}

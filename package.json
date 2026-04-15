@@ -1,0 +1,20 @@
+{
+	"name": "obsidian-gdrive-sync-redstr",
+	"version": "1.0.0",
+	"description": "Secure Google Drive sync for Obsidian — direct OAuth2, no proxy servers",
+	"main": "main.js",
+	"scripts": {
+		"dev": "node esbuild.config.mjs",
+		"build": "tsc -noEmit -skipLibCheck && node esbuild.config.mjs production"
+	},
+	"keywords": [],
+	"license": "MIT",
+	"devDependencies": {
+		"@types/node": "^20.11.0",
+		"builtin-modules": "3.3.0",
+		"esbuild": "0.20.0",
+		"obsidian": "latest",
+		"tslib": "2.6.2",
+		"typescript": "5.3.3"
+	}
+}

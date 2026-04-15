@@ -1,0 +1,41 @@
+.gdrive-sync-status {
+	display: inline-flex;
+	align-items: center;
+	gap: 4px;
+}
+
+.gdrive-sync-status.syncing svg {
+	animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+	from { transform: rotate(0deg); }
+	to { transform: rotate(360deg); }
+}
+
+.gdrive-sync-conflict-modal .conflict-actions {
+	display: flex;
+	gap: 8px;
+	justify-content: flex-end;
+	margin-top: 16px;
+}
+
+.gdrive-sync-setup-info {
+	background: var(--background-secondary);
+	border-radius: 8px;
+	padding: 12px 16px;
+	margin: 8px 0;
+	font-size: 0.9em;
+	line-height: 1.5;
+}
+
+.gdrive-sync-setup-info code {
+	background: var(--background-primary);
+	padding: 2px 4px;
+	border-radius: 3px;
+}
+
+.gdrive-sync-setup-info ol {
+	padding-left: 20px;
+	margin: 8px 0;
+}
