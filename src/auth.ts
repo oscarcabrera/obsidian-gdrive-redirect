@@ -82,15 +82,16 @@ export class GoogleAuth {
 					return;
 				}
 
+				const addr = server.address();
+				const port = typeof addr === "object" && addr ? addr.port : 0;
+				const redirectUri = `http://${LOOPBACK}:${port}`;
+
 				res.writeHead(200, { "Content-Type": "text/html" });
 				res.end(this.resultPage(true));
 				settled = true;
 				server.close();
 
 				try {
-					const addr = server.address();
-					const port = typeof addr === "object" && addr ? addr.port : 0;
-					const redirectUri = `http://${LOOPBACK}:${port}`;
 					const tokens = await this.exchangeCode(clientId, clientSecret, code, redirectUri, codeVerifier);
 					resolve(tokens);
 				} catch (err) {
