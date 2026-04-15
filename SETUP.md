@@ -201,6 +201,26 @@ La URL final debe ser HTTPS.
 
 ## Paso 6: Configurar Obsidian en macOS
 
+### 6.1 — Instalar Obsidian
+
+- **Si aun no tienes Obsidian**: descargalo desde
+  [obsidian.md](https://obsidian.md/). Abre el archivo `.dmg` descargado,
+  arrastra Obsidian a la carpeta **Aplicaciones** y abrelo.
+- **Si ya tienes Obsidian instalado**: simplemente abrelo.
+
+### 6.2 — Crear o abrir tu vault
+
+- **Si es tu primer vault**: al abrir Obsidian, click en
+  **Create new vault** / **Crear nuevo vault**. Elige un nombre
+  (por ejemplo `MiVault`) y una ubicacion en tu disco.
+  Click **Create** / **Crear**.
+- **Si ya tienes un vault**: abrelo desde el selector de vaults de Obsidian.
+
+> **Nota**: Recuerda el nombre exacto de tu vault — lo necesitaras si
+> configuras iOS despues (Paso 7).
+
+### 6.3 — Instalar y configurar el plugin
+
 1. Copia los archivos del plugin (`main.js`, `manifest.json`, `styles.css`)
    a tu vault en:
    ```
@@ -242,9 +262,26 @@ La URL final debe ser HTTPS.
 > **Prerequisito**: Completa primero los pasos 1-5.
 > Tu vault ya debe existir en Google Drive (creado desde macOS en el paso 6).
 
-1. Instala Obsidian en tu iPhone/iPad desde la App Store
-2. Crea un vault nuevo con **exactamente el mismo nombre** que en macOS
-3. Instala el plugin copiando los archivos al vault.
+### 7.1 — Instalar Obsidian
+
+- **Si aun no tienes Obsidian en iOS**: descargalo desde la
+  [App Store](https://apps.apple.com/app/obsidian-connected-notes/id1557175442)
+  e instalalo.
+- **Si ya tienes Obsidian instalado**: simplemente abrelo.
+
+### 7.2 — Crear el vault
+
+1. Al abrir Obsidian, toca **Create new vault** / **Crear nuevo vault**
+2. Usa **exactamente el mismo nombre** que tu vault de macOS
+   (por ejemplo, si en macOS se llama `MiVault`, aqui tambien debe ser `MiVault`)
+3. Toca **Create** / **Crear**
+
+> **Si ya tienes un vault con el mismo nombre**: abrelo directamente
+> y continua con el paso 7.3.
+
+### 7.3 — Instalar y configurar el plugin
+
+1. Instala el plugin copiando los archivos al vault.
    Puedes hacerlo desde la app **Archivos** (Files.app) en iOS:
    ```
    En mi iPhone/iPad → Obsidian → TU_VAULT → .obsidian → plugins → obsidian-gdrive-sync-redstr/
@@ -256,14 +293,14 @@ La URL final debe ser HTTPS.
    > "Ver opciones" para mostrar archivos ocultos. O transfiere los archivos
    > desde macOS via AirDrop/iCloud Drive.
 
-4. Cierra y reabre Obsidian para que detecte el plugin
-5. Ve a **Settings** → **Community Plugins** → habilita **Google Drive Sync**
-6. Ve a los settings del plugin:
+2. Cierra y reabre Obsidian para que detecte el plugin
+3. Ve a **Settings** → **Community Plugins** → habilita **Google Drive Sync**
+4. Ve a los settings del plugin:
    - **Client ID**: pega el Client ID de tipo **Web application**
    - **Client Secret**: pega el Client Secret de tipo **Web application**
    - **Redirect page URL**: pega la URL de tu pagina de GitHub Pages
      (ejemplo: `https://tuusuario.github.io/obsidian-gdrive-redirect/`)
-7. Toca **Login with Google**
+5. Toca **Login with Google**
    - Se abre Safari con la pantalla de consentimiento de Google
    - Puede mostrar la advertencia de app no verificada (igual que en macOS) —
      toca **Avanzado** → **Ir a Obsidian Sync (no seguro)**
@@ -272,11 +309,11 @@ La URL final debe ser HTTPS.
    - La pagina muestra "Redirecting to Obsidian..." y abre Obsidian automaticamente
    - Si iOS pregunta "Abrir en Obsidian?" → toca **Abrir**
    - Veras "Logged in successfully!" en Obsidian
-8. Toca **Initialize vault**
+6. Toca **Initialize vault**
    - Como el vault ya existe en Drive (creado desde macOS),
      el plugin lo detecta y **descarga** todos los archivos
    - Espera a que termine
-9. Listo. Ahora ambos dispositivos estan sincronizados.
+7. Listo. Ahora ambos dispositivos estan sincronizados.
 
 ---
 
